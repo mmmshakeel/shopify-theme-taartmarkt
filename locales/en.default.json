@@ -534,5 +534,12 @@
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
     }
+  },
+  "custom_cake_options": {
+    "delivery_date": "Delivery Date",
+    "delivery_time": "Delivery Time",
+    "is_this_surprise": "Is this a surprise?",
+    "message_on_cake": "Message on the cake (Max 30 chars)",
+    "select_time": "Select time",
   }
 }

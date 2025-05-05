@@ -193,6 +193,18 @@ product-info {
   margin-bottom: 1rem;
 }
 
+/* Cake message input */
+.custom-cake-input {
+  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  padding: 1rem !important;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.custom-cake-input:focus {
+  border: none;
+}
+
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
 .product-form__submit[disabled] + .shopify-payment-button .shopify-payment-button__button[disabled] {
   cursor: not-allowed;

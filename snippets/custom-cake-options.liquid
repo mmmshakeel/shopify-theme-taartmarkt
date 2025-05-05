@@ -1,0 +1,27 @@
+<div class="custom-cake-options">
+    <div class="product-form__input">
+        <label class="form__label">{{ 'custom_cake_options.delivery_date' | t }}:</label>
+        <input type="date" name="properties[Delivery Date]" class="custom-cake-input" required>
+    </div>
+    
+    <div class="product-form__input">
+        <label class="form__label">{{ 'custom_cake_options.delivery_time' | t }}:</label>
+        <select name="properties[Delivery Time]" class="custom-cake-input select select__select" required>
+          <option value="" disabled selected>{{ 'custom_cake_options.select_time' | t }}</option>
+          <option value="8am - 12pm">8am - 12pm</option>
+          <option value="12pm - 4pm">12pm - 4pm</option>
+          <option value="4pm - 8pm">4pm - 8pm</option>
+        </select>
+    </div>
+    
+    <div class="product-form__input">
+        <label class="form__label">{{ 'custom_cake_options.is_this_surprise' | t }}</label>
+        <input type="tel" name="properties[Surprise Phone Number]" class="custom-cake-input field__input">
+    
+    </div>
+
+    <div class="product-form__input">
+        <label class="form__label">{{ 'custom_cake_options.message_on_cake' | t }}:</label>
+        <input type="text" name="properties[Message]" maxlength="30" class="custom-cake-input field__input">
+    </div>
+</div>
