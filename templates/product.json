@@ -49,12 +49,6 @@
           "type": "description",
           "settings": {}
         },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        },
         "collapsible_tab_wVRH8K": {
           "type": "collapsible_tab",
           "settings": {
@@ -62,6 +56,12 @@
             "icon": "truck",
             "content": "",
             "page": "delivery-charges"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
           }
         }
       },
@@ -73,8 +73,8 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "share",
-        "collapsible_tab_wVRH8K"
+        "collapsible_tab_wVRH8K",
+        "share"
       ],
       "settings": {
         "enable_sticky_info": true,
