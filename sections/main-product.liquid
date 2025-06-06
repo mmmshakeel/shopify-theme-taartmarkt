@@ -670,6 +670,42 @@
             {{ 'products.product.view_full_details' | t }}
             {{- 'icon-arrow.svg' | inline_asset_content -}}
           </a>
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'postcode_checker' %}
+                <div id="postcode-checker" style="margin-top: 2rem;">
+                  <label for="postcode-input" style="font-weight: bold;">Check if we deliver to your area:</label>
+                  <input
+                    type="text"
+                    id="postcode-input"
+                    maxlength="6"
+                    placeholder="e.g., 1011"
+                    style="margin-right: 0.5rem;"
+                  >
+                  <button type="button" id="postcode-submit">Submit</button>
+                  <div id="postcode-result" style="margin-top: 0.5rem;"></div>
+                </div>
+
+                <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                    const validPostcodes = ["1011", "1012", "1015", "1053", "3011", "3541", "2801", "1315", "3581", "1092"];
+
+                    const button = document.getElementById('postcode-submit');
+                    const input = document.getElementById('postcode-input');
+                    const resultBox = document.getElementById('postcode-result');
+
+                    button?.addEventListener('click', function () {
+                      const postcode = input.value.trim().substring(0, 4);
+                      if (validPostcodes.includes(postcode)) {
+                        resultBox.innerHTML = "<span style='color:green;'>✅ Great! We deliver to your area.</span>";
+                      } else {
+                        resultBox.innerHTML = "<span style='color:red;'>❌ Sorry, we don’t currently deliver to this postcode.</span>";
+                      }
+                    });
+                  });
+                </script>
+            {% endcase %}
+          {% endfor %}
         </section>
       </div>
     </div>
