@@ -38,6 +38,10 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "postcode_checker_hFCBXR": {
+          "type": "postcode_checker",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -71,6 +75,7 @@
         "price",
         "variant_picker",
         "quantity_selector",
+        "postcode_checker_hFCBXR",
         "buy_buttons",
         "description",
         "collapsible_tab_wVRH8K",
