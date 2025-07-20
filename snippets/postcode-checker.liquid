@@ -1,0 +1,27 @@
+<div id="postcode-checker" style="margin-top: 2rem;">
+  <div class="product-form__input">
+    <label for="postcode-input" class="form__label">{{ 'postcode_checker.title' | t }}:</label>
+    <input type="text" id="postcode-input" maxlength="6" placeholder="e.g., 1011" class="custom-cake-input field__input" />
+  </div>
+  <button type="button" id="postcode-submit" class="product-form__submit button button--secondary">{{ 'postcode_checker.check_button' | t }}</button>
+  <div id="postcode-result" style="margin-top: 0.5rem;"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const validPostcodes = ["1011", "1012", "1015", "1053", "3011", "3541", "2801", "1315", "3581", "1092"];
+
+    const button = document.getElementById('postcode-submit');
+    const input = document.getElementById('postcode-input');
+    const resultBox = document.getElementById('postcode-result');
+
+    button?.addEventListener('click', function () {
+      const postcode = input.value.trim().substring(0, 4);
+      if (validPostcodes.includes(postcode)) {
+        resultBox.innerHTML = "<span style='color:green;'>{{ 'postcode_checker.result_success' | t }}</span>";
+      } else {
+        resultBox.innerHTML = "<span style='color:red;'>{{ 'postcode_checker.result_failure' | t }}</span>";
+      }
+    });
+  });
+</script>
