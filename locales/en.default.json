@@ -540,6 +540,12 @@
     "delivery_time": "Delivery Time",
     "is_this_surprise": "Is this a surprise?",
     "message_on_cake": "Message on the cake (Max 30 chars)",
-    "select_time": "Select time",
+    "select_time": "Select time"
+  },
+  "postcode_checker": {
+    "title": "Check if we deliver to your area",
+    "check_button": "Check Delivery",
+    "result_success": "Great! We deliver to your area.",
+    "result_failure": "Sorry, we don’t currently deliver to this postcode."
   }
 }

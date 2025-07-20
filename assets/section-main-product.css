@@ -198,11 +198,12 @@ product-info {
   border: 0.1rem solid rgba(var(--color-foreground), 0.1);
   padding: 1rem !important;
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 .custom-cake-input:focus {
   border: none;
+  padding: 1rem !important;
+  width: 100%;
 }
 
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
