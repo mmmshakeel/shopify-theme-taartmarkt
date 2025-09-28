@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "coming_soon_page": {
+      "type": "coming-soon-page",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "We're Coming Soon!",
+            "heading_size": "h0"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>We're working hard to bring you something amazing. Stay tuned!</p>",
+            "text_style": "body"
+          }
+        },
+        "hubspot_form": {
+          "type": "hubspot_form",
+          "settings": {}
+        },
+        "baker_registration": {
+          "type": "baker_registration",
+          "settings": {
+            "button_text": "Baker Registration"
+          }
+        },
+        "password_link": {
+          "type": "password_link",
+          "settings": {
+            "link_text": "Site Access"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "paragraph",
+        "hubspot_form",
+        "baker_registration",
+        "password_link"
+      ],
+      "settings": {
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-1",
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    }
+  },
+  "order": [
+    "coming_soon_page"
+  ]
+}

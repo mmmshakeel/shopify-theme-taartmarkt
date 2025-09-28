@@ -1451,5 +1451,95 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Coming Soon Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "coming_soon_enabled",
+        "label": "Enable Coming Soon Mode",
+        "default": false,
+        "info": "When enabled, visitors will see the coming soon page instead of the regular site"
+      },
+      {
+        "type": "header",
+        "content": "Content Settings"
+      },
+      {
+        "type": "text",
+        "id": "coming_soon_heading",
+        "label": "Main Heading",
+        "default": "We're Coming Soon!"
+      },
+      {
+        "type": "richtext",
+        "id": "coming_soon_description",
+        "label": "Description Text",
+        "default": "<p>We're working hard to bring you something amazing. Stay tuned!</p>"
+      },
+      {
+        "type": "header",
+        "content": "HubSpot Integration"
+      },
+      {
+        "type": "textarea",
+        "id": "hubspot_embed_code",
+        "label": "HubSpot Form Embed Code",
+        "info": "Paste your HubSpot form embed code here. Leave empty to hide the form."
+      },
+      {
+        "type": "header",
+        "content": "Baker Registration"
+      },
+      {
+        "type": "url",
+        "id": "baker_registration_url",
+        "label": "Baker Registration Google Form URL",
+        "info": "URL to your Google Form for baker registration"
+      },
+      {
+        "type": "text",
+        "id": "baker_button_text",
+        "label": "Baker Registration Button Text",
+        "default": "Baker Registration"
+      },
+      {
+        "type": "header",
+        "content": "Password Page Access"
+      },
+      {
+        "type": "text",
+        "id": "password_link_text",
+        "label": "Password Page Link Text",
+        "default": "Site Access",
+        "info": "Text for the discreet link to the password page"
+      },
+      {
+        "type": "header",
+        "content": "Visual Settings"
+      },
+      {
+        "type": "image_picker",
+        "id": "coming_soon_background",
+        "label": "Background Image"
+      },
+      {
+        "type": "range",
+        "id": "coming_soon_overlay_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 10,
+        "unit": "%",
+        "label": "Background Overlay Opacity",
+        "default": 40
+      },
+      {
+        "type": "color_scheme",
+        "id": "coming_soon_color_scheme",
+        "label": "Color Scheme",
+        "default": "scheme-1"
+      }
+    ]
   }
 ]
