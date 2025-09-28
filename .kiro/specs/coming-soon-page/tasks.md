@@ -1,6 +1,6 @@
 # Implementation Plan
 
-- [ ] 1. Set up core template structure and theme settings
+- [x] 1. Set up core template structure and theme settings
   - Create the coming-soon.json template file with basic structure
   - Add coming soon page settings group to settings_schema.json with all configuration options
   - Create basic liquid template structure for the coming soon section
