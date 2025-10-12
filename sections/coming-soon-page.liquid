@@ -25,11 +25,7 @@
     }
   {%- endif -%}
 
-  .coming-soon-page .password-link {
-    font-size: 0.8rem;
-    opacity: 0.7;
-    margin-top: 2rem;
-  }
+
 
   .coming-soon-page .baker-registration-button {
     margin: 1.5rem 0;
@@ -103,12 +99,7 @@
                 </a>
               </div>
             {%- endif -%}
-          {%- when 'password_link' -%}
-            <div class="password-link" {{ block.shopify_attributes }}>
-              <a href="/password" class="link link--text">
-                {{ block.settings.link_text | default: settings.password_link_text }}
-              </a>
-            </div>
+
         {%- endcase -%}
       {%- endfor -%}
     </div>
@@ -371,20 +362,6 @@
         }
       ]
     },
-    {
-      "type": "password_link",
-      "name": "Password Page Link",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "link_text",
-          "label": "Link Text",
-          "default": "Site Access",
-          "info": "Leave empty to use the text from theme settings"
-        }
-      ]
-    }
   ],
   "presets": [
     {
@@ -402,9 +379,7 @@
         {
           "type": "baker_registration"
         },
-        {
-          "type": "password_link"
-        }
+
       ]
     }
   ]
