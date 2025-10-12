@@ -35,20 +35,13 @@
           "settings": {
             "button_text": "Baker Registration"
           }
-        },
-        "password_link": {
-          "type": "password_link",
-          "settings": {
-            "link_text": "Site Access"
-          }
         }
       },
       "block_order": [
         "heading",
         "paragraph",
         "hubspot_form",
-        "baker_registration",
-        "password_link"
+        "baker_registration"
       ],
       "settings": {
         "image": "shopify://shop_images/Learn_the_basics.png",
