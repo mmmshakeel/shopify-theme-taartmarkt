@@ -30,7 +30,7 @@
           "type": "hubspot_form",
           "settings": {}
         },
-        "baker_description": {
+        "baker_description_APXPhk": {
           "type": "baker_description",
           "settings": {
             "text": "<p>Turn your passion for baking into your next venture. We're creating the ultimate platform for bakers of all sizes. Hobbyist, home baker, or professional—everyone is welcome. Get an all-in-one solution to manage your orders and showcase your creations. Be the first to join our community!</p>",
@@ -48,7 +48,7 @@
         "heading",
         "paragraph",
         "hubspot_form",
-        "baker_description",
+        "baker_description_APXPhk",
         "baker_registration"
       ],
       "settings": {
