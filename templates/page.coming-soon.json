@@ -33,7 +33,7 @@
         "baker_description_APXPhk": {
           "type": "baker_description",
           "settings": {
-            "text": "<p>We’re building a space where every baker,  from home creators to professionals, can showcase, sell, and connect effortlessly.<br/><br/>Join our growing community of bakers and be the first to know when we go live!<br/><br/>💌 Let’s bake without borders. Join us today!</p>",
+            "text": "<p>We’re building a space where every baker,  from home creators to professionals, can showcase, sell, and connect effortlessly.<br/><br/>Join our growing community of bakers and be the first to know when we go live!<br/><br/>Let’s bake without borders. Join us today!</p>",
             "text_style": "body"
           }
         },
