@@ -11,20 +11,115 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
+    {%- comment -%} Coming Soon Mode Detection and Redirection {%- endcomment -%}
+    {%- liquid
+      assign coming_soon_active = false
+      assign bypass_coming_soon = false
+      
+      if settings.coming_soon_enabled
+        assign coming_soon_active = true
+        
+        # Check if current page should bypass coming soon mode
+        # Password page access
+        if request.page_type == 'password' or template contains 'password' or request.path contains '/password'
+          assign bypass_coming_soon = true
+        endif
+        
+        # Admin and preview access
+        if Shopify.designMode or request.preview_theme_id
+          assign bypass_coming_soon = true
+        endif
+        
+        # Check for admin user session (if logged into Shopify admin)
+        if customer.tags contains 'admin' or customer.tags contains 'staff'
+          assign bypass_coming_soon = true
+        endif
+        
+        # Already on coming soon page to prevent redirect loop
+        if template contains 'coming-soon' or request.path contains 'coming-soon'
+          assign bypass_coming_soon = true
+        endif
+        
+        # Admin panel access
+        if request.path contains '/admin'
+          assign bypass_coming_soon = true
+        endif
+        
+        # API and webhook endpoints
+        if request.path contains '/api/' or request.path contains '/webhooks/'
+          assign bypass_coming_soon = true
+        endif
+        
+        # Cart and checkout processes (in case someone has direct links)
+        if request.page_type == 'cart' or request.page_type == 'checkout'
+          assign bypass_coming_soon = true
+        endif
+      endif
+    -%}
+
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
     <title>
-      {{ page_title }}
-      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- if coming_soon_active and bypass_coming_soon == false -%}
+        Coming Soon - {{ shop.name }}
+      {%- else -%}
+        {{ page_title }}
+        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- endif -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {%- if coming_soon_active and bypass_coming_soon == false -%}
+      {%- liquid
+        assign coming_soon_title = settings.coming_soon_heading | default: 'Coming Soon'
+        assign coming_soon_desc = settings.coming_soon_description | strip_html | truncate: 160 | default: 'We\'re working hard to bring you something amazing. Stay tuned for our launch!'
+      -%}
+      <meta name="description" content="{{ coming_soon_desc | escape }}">
+      <meta name="robots" content="noindex, nofollow">
+      
+      {%- comment -%} Open Graph meta tags {%- endcomment -%}
+      <meta property="og:title" content="{{ coming_soon_title }} - {{ shop.name }}">
+      <meta property="og:description" content="{{ coming_soon_desc | escape }}">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="{{ shop.url }}">
+      <meta property="og:site_name" content="{{ shop.name }}">
+      {%- if settings.coming_soon_background != blank -%}
+        <meta property="og:image" content="{{ settings.coming_soon_background | image_url: width: 1200, height: 630 }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+      {%- endif -%}
+      
+      {%- comment -%} Twitter Card meta tags {%- endcomment -%}
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="{{ coming_soon_title }} - {{ shop.name }}">
+      <meta name="twitter:description" content="{{ coming_soon_desc | escape }}">
+      {%- if settings.coming_soon_background != blank -%}
+        <meta name="twitter:image" content="{{ settings.coming_soon_background | image_url: width: 1200, height: 630 }}">
+      {%- endif -%}
+      
+      {%- comment -%} Structured Data for Coming Soon {%- endcomment -%}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ shop.name }}",
+        "url": "{{ shop.url }}",
+        "description": "{{ coming_soon_desc | escape }}",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "{{ shop.url }}/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+      </script>
+    {%- else -%}
+      {% if page_description %}
+        <meta name="description" content="{{ page_description | escape }}">
+      {% endif %}
+    {%- endif -%}
 
     {% render 'meta-tags' %}
 
@@ -298,7 +393,61 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}{% if coming_soon_active and bypass_coming_soon == false %} coming-soon-mode{% endif %}">
+    {%- comment -%} Coming Soon Mode Redirection {%- endcomment -%}
+    {%- if coming_soon_active and bypass_coming_soon == false -%}
+      {%- liquid
+        # Try to find a page with coming-soon template or handle
+        assign coming_soon_page = pages['coming-soon']
+        if coming_soon_page == blank
+          for page in pages
+            if page.template_suffix == 'coming-soon'
+              assign coming_soon_page = page
+              break
+            endif
+          endfor
+        endif
+        
+        # Set the redirect URL
+        if coming_soon_page != blank
+          assign redirect_url = coming_soon_page.url
+        else
+          assign redirect_url = '/pages/coming-soon'
+        endif
+      -%}
+      
+      <script>
+        // Coming Soon Mode Debug Info (only in design mode)
+        {% if Shopify.designMode %}
+        console.log('Coming Soon Mode Active:', {{ coming_soon_active | json }});
+        console.log('Bypass Coming Soon:', {{ bypass_coming_soon | json }});
+        console.log('Current Template:', '{{ template }}');
+        console.log('Request Path:', '{{ request.path }}');
+        {% endif %}
+        
+        // Redirect to coming soon page if not already there
+        var currentPath = window.location.pathname;
+        var redirectUrl = '{{ redirect_url }}';
+        if (currentPath !== redirectUrl && !currentPath.includes('coming-soon')) {
+          window.location.replace(redirectUrl);
+        }
+      </script>
+      <noscript>
+        <meta http-equiv="refresh" content="0; url={{ redirect_url }}">
+      </noscript>
+    {%- elsif coming_soon_active == false and template contains 'coming-soon' -%}
+      {%- comment -%} Redirect away from coming soon page if mode is disabled {%- endcomment -%}
+      <script>
+        // Redirect to home page if coming soon mode is disabled but user is on coming soon page
+        if (window.location.pathname.includes('coming-soon')) {
+          window.location.replace('/');
+        }
+      </script>
+      <noscript>
+        <meta http-equiv="refresh" content="0; url=/">
+      </noscript>
+    {%- endif -%}
+
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
