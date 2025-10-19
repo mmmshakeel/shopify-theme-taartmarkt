@@ -49,6 +49,14 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .coming-soon-page .banner__text {
+    margin: 1.5rem 0;
+  }
+
+  .coming-soon-page .banner__text + .baker-registration-button {
+    margin-top: 2rem;
+  }
 {%- endstyle -%}
 
 <div
@@ -97,6 +105,10 @@
                 {{ settings.hubspot_embed_code }}
               </div>
             {%- endif -%}
+          {%- when 'baker_description' -%}
+            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
           {%- when 'baker_registration' -%}
             {%- if settings.baker_registration_url != blank -%}
               <div class="baker-registration-button" {{ block.shopify_attributes }}>
@@ -361,6 +373,35 @@
       ]
     },
     {
+      "type": "baker_description",
+      "name": "Baker Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Turn your passion for baking into your next venture. We're creating the ultimate platform for bakers of all sizes. Hobbyist, home baker, or professional—everyone is welcome. Get an all-in-one solution to manage your orders and showcase your creations. Be the first to join our community!</p>",
+          "label": "Baker Description Text"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "Body"
+            },
+            {
+              "value": "subtitle",
+              "label": "Subtitle"
+            }
+          ],
+          "default": "body",
+          "label": "Text Style"
+        }
+      ]
+    },
+    {
       "type": "baker_registration",
       "name": "Baker Registration Button",
       "limit": 1,
@@ -389,9 +430,11 @@
           "type": "hubspot_form"
         },
         {
-          "type": "baker_registration"
+          "type": "baker_description"
         },
-
+        {
+          "type": "baker_registration"
+        }
       ]
     }
   ]
