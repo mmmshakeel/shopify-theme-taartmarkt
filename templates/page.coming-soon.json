@@ -15,14 +15,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "We're Coming Soon!",
+            "heading": "We’re Launching Soon!",
             "heading_size": "h0"
           }
         },
         "paragraph": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>We're working hard to bring you something amazing. Stay tuned!</p>",
+            "text": "<p>Turn your love for baking into something bigger.<br/></p>",
             "text_style": "body"
           }
         },
@@ -33,7 +33,7 @@
         "baker_description_APXPhk": {
           "type": "baker_description",
           "settings": {
-            "text": "<p>Turn your passion for baking into your next venture. We're creating the ultimate platform for bakers of all sizes. Hobbyist, home baker, or professional—everyone is welcome. Get an all-in-one solution to manage your orders and showcase your creations. Be the first to join our community!</p>",
+            "text": "<p>We’re building a space where every baker,  from home creators to professionals, can showcase, sell, and connect effortlessly.<br/><br/>Join our growing community of bakers and be the first to know when we go live!<br/><br/>💌 Let’s bake without borders. Join us today!</p>",
             "text_style": "body"
           }
         },
