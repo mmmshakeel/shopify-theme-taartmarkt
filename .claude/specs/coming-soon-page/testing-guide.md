@@ -1,5 +1,9 @@
 # Local Testing Guide
 
+> Claude-maintained spec (ported from the original Kiro spec). Manual test matrix for the
+> coming-soon feature. Task numbers here follow the original plan and may not map 1:1 to the
+> current [`tasks.md`](./tasks.md).
+
 This guide provides step-by-step instructions for manually testing each task locally using Shopify CLI and theme development tools.
 
 ## Prerequisites

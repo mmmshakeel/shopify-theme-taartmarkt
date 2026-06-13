@@ -1,5 +1,8 @@
 # Coming Soon Mode Activation System
 
+> Claude-maintained spec (ported from the original Kiro spec). Operational reference for the
+> activation/redirect logic; see [`design.md`](./design.md) for the architectural summary.
+
 ## Overview
 
 The coming soon mode activation system has been implemented in `layout/theme.liquid` to automatically redirect visitors to a coming soon page when the site is under construction, while allowing authorized access for administrators and specific use cases.
