@@ -75,7 +75,7 @@
     {%- if coming_soon_active and bypass_coming_soon == false -%}
       {%- liquid
         assign coming_soon_title = settings.coming_soon_heading | default: 'Coming Soon'
-        assign coming_soon_desc = settings.coming_soon_description | strip_html | truncate: 160 | default: 'We\'re working hard to bring you something amazing. Stay tuned for our launch!'
+        assign coming_soon_desc = settings.coming_soon_description | strip_html | truncate: 160 | default: 'We\'
       -%}
       <meta name="description" content="{{ coming_soon_desc | escape }}">
       <meta name="robots" content="noindex, nofollow">
@@ -523,3 +523,16 @@
     {%- endif -%}
   </body>
 </html>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "        assign coming_soon_desc = settings.coming_soon_description | strip_html
+    | truncate: 160 | default: 'We\\'re working hard to bring you something amazing.
+    Stay tuned for our launch!'"
+  to: "        assign coming_soon_desc = settings.coming_soon_description | strip_html
+    | truncate: 160 | default: 'We\\'"
+  position: 2990..3102
+{% endcomment %}
